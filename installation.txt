@@ -1,0 +1,21 @@
+pip install chatterbot
+pip install spacy
+pip install --upgrade spacy
+import spacy
+from spacy.cli.download import download
+download(model="en_core_web_sm")
+nlp = spacy.load('en_core_web_sm')
+pip install chatterbot_corpus
+
+
+pip install chatterbot==1.0.0
+
+pip install spacy==3.4
+
+import spacy
+from spacy.cli.download import download
+download(model="en_core_web_sm")
+
+nlp = spacy.load('en_core_web_sm')
+
+pip install chatterbot_corpus
