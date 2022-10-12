@@ -6,7 +6,7 @@ import numpy as np
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 from functions import *
-from fun2 import *
+
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -348,6 +348,6 @@ def chatter(sentence):
         res=bot_response(sentence)
     return res
 
-while True:
-    sentence=input("You:")
-    print(chatter(sentence))
+# while True:
+#     sentence=input("You:")
+#     print(chatter(sentence))
