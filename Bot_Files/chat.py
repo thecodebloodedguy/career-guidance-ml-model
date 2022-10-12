@@ -6,10 +6,11 @@ import numpy as np
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 from functions import *
+from fun2 import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-with open('intents.json', 'r') as json_data:
+with open('Bot_Files\intents.json', 'r') as json_data:
     intents = json.load(json_data)
 
 FILE = "data.pth"
@@ -35,12 +36,11 @@ flag=0
 q_list =  [
         "What is your stream?",
         "What is your gender?",
-        "On a scale of 0-10,how much would you rate your visualisation skills?",
         "On a scale of 0-10,how much would you rate your logical quotient skills?",
         "On a scale of 0-10,how much would you rate your reading skills?",
         "What are your marks in Higher Secondary?",
         "Are you interested in the field of sports?",
-        "What are your accomplishments in sports?",
+        "How many sports accomplishments do you have?",
         "Are you interested in the field of arts?",
         "What type of art field are you interested in?",
         "On a scale of 0-10,how much would you rate your teaching skills?",
@@ -49,7 +49,7 @@ q_list =  [
         "Can you lead a team?",
         "On a scale of 0-10,how much would you rate your team management skills?",
         "Are you interested in the field of Chemistry?",
-        "On a scale of 0-10,how much would you rate your chemistry skills?"
+        "On a scale of 0-10,how much would you rate your chemistry skills?",
         "Are you interested in the field of Tech?",
         "What domain of Tech are you interested in, hardware or software?",
         "On a scale of 0-10,how much would you rate your coding skills?",
@@ -61,42 +61,51 @@ q_list =  [
         "What type is your family business?",
         "On a scale of 0-10,how much would you rate your interest in doing public services?",
         "On a scale of 0-10,how much would you rate your Mathematics skills?",
-        "On a scale of 0-10,how much would you rate your visualization skills?"
-
-    ]
+        "On a scale of 0-10,how much would you rate your visualization skills?"]
 
 q_res=[["Don't worry at all, I've still got your back","Sit back and relax, science students like you have a vast variety of options","Backbone of a company's Accounting. You're in the game!","The lifeline of our bodies! You are in for big.","Looks like you are following your passion, let's se what I have for you."],
-         ["Hello Mister","Hello Miss"],
-         ["Looks like your brain needs still more logical thinking approach","I can tell that you have mastered the logical quizzes"],
-         ["Looks like you don't love books that much","I smell an avid reader here"],
-         ["Looks like you had a tough time","I can say that you are a hard worker","I can smell a topper from a mile away"],
+         ["","Hello Mister","Hello Miss","Hello"],
+         ["Looks like your brain needs still more logical thinking approach","Looks like your brain needs still more logical thinking approach","Looks like your brain needs still more logical thinking approach","Looks like your brain needs still more logical thinking approach","Looks like your brain needs still more logical thinking approach","Looks like your brain needs still more logical thinking approach","I can tell that you have mastered the logical quizzes","I can tell that you have mastered the logical quizzes"
+         ,"I can tell that you have mastered the logical quizzes","I can tell that you have mastered the logical quizzes","I can tell that you have mastered the logical quizzes"],
+         ["Looks like you don't love books that much","Looks like you don't love books that much","Looks like you don't love books that much","Looks like you don't love books that much","Looks like you don't love books that much","Looks like you don't love books that much","I smell an avid reader here","I smell an avid reader here",
+          "I smell an avid reader here","I smell an avid reader here","I smell an avid reader here"],
+         ["Looks like you had a tough time","I can smell a topper from a mile away"],
          ["Not a sports guy, huh","Now we are talking!"],
-         ["I can tell you must be pretty good at sports","Now that's a real sportsperson!"],
-         ["You are in for some good options","Looks like your interest is not in Arts"],
-         ["Oh! I love that field"],
-         ["I mean if everyone is a teacher, who will be the student?","I can tell,you can become a great teacher"],
-         ["Looks like you get your work done all by yourself","Looks like you are sound"],
+         ["You have got quite an amount of accomplishments","You have got quite an amount of accomplishments","You have got quite an amount of accomplishments","Now that's a real sportsperson!","Now that's a real sportsperson!","Now that's a real sportsperson!"],
+         ["Looks like your interest is not in Arts","You are in for some good options"],
+         ["Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field","Oh! I love that field"],
+         ["I mean if everyone is a teacher, who will be the student?","I mean if everyone is a teacher, who will be the student?","I mean if everyone is a teacher, who will be the student?","I mean if everyone is a teacher, who will be the student?","I mean if everyone is a teacher, who will be the student?","I mean if everyone is a teacher, who will be the student?","I can tell,you can become a great teacher","I can tell,you can become a great teacher",
+          "I can tell,you can become a great teacher","I can tell,you can become a great teacher","I can tell,you can become a great teacher"],
+         ["Looks like you get your work done all by yourself","Looks like you get your work done all by yourself","Looks like you get your work done all by yourself","Looks like you get your work done all by yourself","Looks like you get your work done all by yourself","Looks like you get your work done all by yourself",
+          "Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound"],
          ["Seems like you have stage fear","Looks like you are ready to perform on stage"],
          ["Not everyone likes to work on a team","You are fit to lead!"],
-         ["Looks like you work your best when you work alone","I am sure you were the leader in school projects"],
+         ["Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone",
+          "I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects"],
          ["Looks like you might be a fan of Breaking Bad too","We still have much options left for you"],
-         ["Chemistry is tough for me too","You have a way with handling chemicals"],
+         ["Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too",
+          "You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals"],
          ["You just opened a big pile of options for yourself","Don't worry there are many good non-techincal fields"],
          ["Let's see what I have further to offer you","Great choice! You are in for big time"],
-         ["Looks like you nexzzzed more practice","I am sure you are good with keyboard"],
-         ["You will get there, don't worry","Looks like you are sound"],
+         ["Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice",
+          "I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard"],
+         ["You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry",
+          "Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound"],
          ["You are in for big time","Not everyone likes it"],
-         ["Awesome choice my friend!"],
+         ["Awesome choice ky friend!"],
          ["Now that is an amazing preference"],
          ["Cool! Looks like you might have it sorted","Working a 9-5 is good too"],
-         ["Looks like this is not your thing","You sound like a kind hearted person"],
-         ["Not everyone is good in maths","You have a way with numbers"],
-         ["Looks like you still thrive for more visual skills","Looks like your brain is prepared to act in any situation"]
+         ["Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing",
+          "You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person"],
+         ["Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths",
+          "You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers"],
+         ["Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills",
+          "Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation"]
          ]
-
 a=[0]*28
 
 def get_response_(sentence):
+    sentence=sentence.lower()
     global q_counter
     global q_list
     global a
@@ -108,141 +117,192 @@ def get_response_(sentence):
         return "I will ask you a few questions. Answer me well \n"+q_list[q_counter-1]
     if(q_counter==1):
         res=q1(sentence)
+        a1=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==2):
         res=q2(sentence)
+        a2=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==3):
         res=q3(sentence)
+        a3=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==4):
         res=q4(sentence)
+        a4=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==5):
         res=q5(sentence)
+        a5=res
+        hsc=0 if int(res)<300 else 1
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][hsc]+'\n'+q_list[q_counter-1]
     if(q_counter==6):
         res=q6(sentence)
+        a6=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=2
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==7):
         res=q7(sentence)
+        a7=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==8):
         res=q8(sentence)
+        a8=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=2
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==9):
         res=q9(sentence)
+        a9=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==10):
         res=q10(sentence)
+        a10=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==11):
         res=q11(sentence)
+        a11=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res>=5:
+            q_counter+=1
+        else:
+            q_counter+=2
+        return q_res[10][res]+'\n'+q_list[q_counter-1]
     if(q_counter==12):
         res=q12(sentence)
+        a12=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==13):
         res=q13(sentence)
+        a13=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==14):
         res=q14(sentence)
+        a14=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==15):
         res=q15(sentence)
+        a15=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=2
+        return q_list[15]
     if(q_counter==16):
         res=q16(sentence)
+        a16=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==17):
         res=q17(sentence)
+        a17=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=3
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==18):
         res=q18(sentence)
-        a[q_counter-1]=res
+        a18=int(res)
+        a[q_counter-1]=a18
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][a18]+'\n'+q_list[q_counter-1]
     if(q_counter==19):
         res=q19(sentence)
+        a19=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==20):
         res=q20(sentence)
+        a20=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==21):
         res=q21(sentence)
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        a21=res
+        a[q_counter-1]=res
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=3
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==22):
         res=q22(sentence)
+        a22=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==23):
         res=q23(sentence)
+        a23=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==24):
         res=q24(sentence)
+        a24=res
         a[q_counter-1]=res
-        q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        if res==1:
+            q_counter+=1
+        else:
+            q_counter+=2
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==25):
         res=q25(sentence)
+        a25=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==26):
         res=q26(sentence)
+        a26=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==27):
         res=q27(sentence)
+        a27=res
         a[q_counter-1]=res
         q_counter+=1
         flag=2
-        return q_res[q_counter-1][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(flag==2):
         res=q28(sentence)
+        a28=res
         a[q_counter-1]=res
         q_counter+=1
         flag=0
@@ -252,6 +312,8 @@ def get_response_(sentence):
         result=rf.predict(a)
         print(result)
         return output(result[0])
+
+
 
 def bot_response(sentence):
     sentence = tokenize(sentence)
@@ -285,3 +347,7 @@ def chatter(sentence):
     else:
         res=bot_response(sentence)
     return res
+
+while True:
+    sentence=input("You:")
+    print(chatter(sentence))
