@@ -1,6 +1,6 @@
 import pandas as pd
 import pickle
-df=pd.read_csv('Career_Data.csv')
+df=pd.read_csv('Bot_Files\Career_Data.csv')
 df.fillna(0)
 df['arts_rel'] = df['arts_rel'].replace(['0','music', 'theatre', 'tourism', 'fineart', 'literature'],[0,1,2,3,4,5])
 df['tech_sh'] = df['tech_sh'].replace(['software', '0','hardware'],[1,0,2])
