@@ -12,6 +12,7 @@ def q1(n):
           return 4
       else:
         return 0
+      return -1
 
 def q2(n):
  
@@ -22,18 +23,19 @@ def q2(n):
           return 2
       else:
         return 3
+      return -1
 
 def q3(n):
-  if(n>=0 and n<=10):
-    return n
+
+    return int(n)
 
 def q4(n):
-  if(n>=0 and n<=10):
-    return n
+  return int(n)
+  
 
 def q5(n):
-  if(n>=0 and n<=550):
-    return n
+ 
+    return int(n)
 
 
 def q6(n):
@@ -43,12 +45,15 @@ def q6(n):
           return 1
       elif n=="no":
           return 0
+      return -1
 
 def q7(n):
+  n=int(n)
   if(n>=1 and n<=5):
-    return n
+    return int(n)
   else:
     return 0
+  return -1
 
 
 def q8(n):
@@ -58,6 +63,7 @@ def q8(n):
           return 1
       elif n=="no":
           return 0
+      return -1
 
 def q9(n):
       if n=="music":
@@ -72,14 +78,14 @@ def q9(n):
           return 5    
       else:
         return 0
+      return -1
 
 def q10(n):
-  if(n>=0 and n<=10):
-    return n
+  return int(n)
 
 def q11(n):
-  if(n>=0 and n<=10):
-    return n
+
+    return int(n)
 
 
 def q12(n):
@@ -91,14 +97,20 @@ def q12(n):
           return 0
 
 def q13(n):
-  if(n>=1 and n<=10):
-    return n
-      
+    if n=="yes":
+          return 1
+    elif n=="no":
+        return 0
+    return -1
 
 
 def q14(n):
-  if(n>=1 and n<=10):
-    return n
+    n=n.lower()
+    if n=='yes':
+        return 1
+    else:
+        return 0
+  
 def q15(n):
  
  
@@ -106,12 +118,10 @@ def q15(n):
           return 1
       elif n=="no":
           return 0
+      return -1
 
 def q16(n):
-  if(n>=1 and n<=10):
-    return n
-  else:
-    return 0
+  return int(n)
 
       
      
@@ -123,28 +133,24 @@ def q17(n):
           return 1
       elif n=="no":
           return 0
+      return -1
 
 def q18(n):
   if n=="software":
     return 1
   elif n=="hardware":
     return 2
+  return -1
 
 
 
 def q19(n):
-  if(n>=6 and n<=10):
-    return n
-  else:
-    return 0
+  return int(n)
 
 
 
 def q20(n):
-  if(n>=4 and n<=10):
-    return n
-  else:
-    return 0
+  return int(n)
 
 def q21(n):
  
@@ -153,6 +159,7 @@ def q21(n):
           return 1
       elif n=="no":
           return 0
+      return -1
 
 def q22(n):
       if n=="nutritionist":
@@ -161,6 +168,7 @@ def q22(n):
           return 2
       else:    
          return 0
+      return -1
 
 def q23(n):
       if n=="veterinary":
@@ -175,6 +183,7 @@ def q23(n):
           return 5    
       else:
         return 0
+      return -1
 
 def q24(n):
  
@@ -183,7 +192,7 @@ def q24(n):
           return 1
       elif n=="no":
           return 0
-
+      return -1
 def q25(n):
       if n=="industrial":
           return 1
@@ -195,27 +204,19 @@ def q25(n):
           return 4 
       else:
         return 0
+      return -1
      
 
 def q26(n):
-  if(n>=0 and n<=10):
-    return n
-  else:
-    return 0  
+  return int(n)  
 
 
 def q27(n):
-  if(n>=1 and n<=10):
-    return n
-  else:
-    return 0  
+  return int(n)
       
 
 def q28(n):
-  if(n>=1 and n<=10):
-    return n
-  else:
-    return 0
+    return int(n)
 
 def output(n):
       if n== 1:
@@ -247,3 +248,4 @@ def output(n):
 
             
 
+ 
