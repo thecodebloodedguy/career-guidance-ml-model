@@ -6,9 +6,7 @@ from chatterbot.trainers import ListTrainer
 import numpy as np
 import spacy
 from spacy.cli.download import download
-download(model="en_core_web_sm")
 
-nlp = spacy.load('en_core_web_sm')
 
 
 
@@ -424,16 +422,18 @@ def get_response_(sentence):
     
 #running chatbot
 #  
-while True:
-    request=input('You :')
-    if request.lower() == 'quit':
-        print('Bot: bye')
-        break
-    elif (request.lower()=="get career guidance" or flag>=1):
-      response=get_response_(request)
-      print('Bot:',response)
-    else:
-        response=bot.get_response(request)
-        print('Bot:', response)
+
+import regex as re
+
+def chatter(request):
+  global flag
+  match = re.search(r'career', request) 
+  if request.lower()=="quit":
+    response="bye"
+  elif match or flag>=1: #request.lower()=="get career guidance"
+    response=get_response_(request)
+  else:
+    response=bot.get_response(request)
+  return response
 
 
