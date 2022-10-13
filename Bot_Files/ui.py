@@ -26,7 +26,7 @@ class App:
         self.window.title('Career Counselling CHATBOT')
         self.window.resizable(width=True, height=True)
         self.window.geometry(f"{App.WIDTH}x{App.HEIGHT}")
-        self.window.iconbitmap(r'2021646.png')        
+        self.window.iconbitmap(r'app_icon.ico')        
 
         #configure grids and frames
         self.window.grid_columnconfigure(1, weight=1)
@@ -107,7 +107,7 @@ class App:
         self.text_widget.insert(END,user)
         self.text_widget.configure(state=DISABLED)
         
-        bot = f"Gina:{chatter(msg)}\n\n"
+        bot = f"Bisque:{chatter(msg)}\n\n"
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END,bot)
         self.text_widget.configure(state=DISABLED)
