@@ -231,7 +231,7 @@ def get_response_(sentence):
         if res==1:
             q_counter+=1
         else:
-            q_counter+=3
+            q_counter+=4
         return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
     if(q_counter==18):
         res=q18(sentence)
