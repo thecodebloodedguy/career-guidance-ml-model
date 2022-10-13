@@ -95,19 +95,19 @@ class App:
         #function for on press events
     def _on_enter_pressed(self,event):
         msg = self.entry.get()
-        self._insert_msg(msg,"YOU")
+        self._insert_msg(msg,"You")
         
         #function to insert message
     def _insert_msg(self,msg,sender):
         if not msg:
             return
         self.entry.delete(0,END)
-        user = f"{sender}: {msg}\n\n"
+        user = f"{sender}:\n {msg}\n\n"
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END,user)
         self.text_widget.configure(state=DISABLED)
         
-        bot = f"Bisque:{chatter(msg)}\n\n"
+        bot = f"Bisque:\n{chatter(msg)}\n\n"
         self.text_widget.configure(state=NORMAL)
         self.text_widget.insert(END,bot)
         self.text_widget.configure(state=DISABLED)
