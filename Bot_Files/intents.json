@@ -1,0 +1,268 @@
+{
+      "intents": [
+              {
+                      "tag": "greeting",
+                      "patterns": [
+                              "Hi",
+                              "How are you",
+                              "Is anyone there?",
+                              "Hello",
+                              "Good day",
+                              "Whats up",
+                              "how are ya",
+                              "heyy",
+                              "whatsup"
+                      ],
+                      "responses": [
+                              "Hello!",
+                              "Good to see you again!",
+                              "Hi there, how can I help?"
+                      ]
+              },
+              {
+                      "tag": "goodbye",
+                      "patterns": [
+                              "cya",
+                              "see you",
+                              "bye bye",
+                              "See you later",
+                              "Goodbye",
+                              "I am Leaving",
+                              "Bye",
+                              "Have a Good day",
+                              "talk to you later",
+                              "tyyl",
+                              "i got to go",
+                              "gtg"
+                      ],
+                      "responses": [
+                              "Sad to see you go :(",
+                              "Talk to you later",
+                              "Goodbye!",
+                              "Come back soon"
+                      ]
+              },
+              {
+                      "tag": "creator",
+                      "patterns": [
+
+                              "what is the name of your developers",
+                              "what is the name of your creators",
+                              "what is the name of the developers",
+                              "what is the name of the creators",
+                              "who created you",
+                              "your developers",
+                              "your creators",
+                              "who are your developers",
+                              "developers",
+                              "you are made by",
+                              "you are made by whom",
+                              "who created you",
+                              "who create you",
+                              "creators",
+                              "who made you",
+                              "who designed you"
+                      ],
+                      "responses": [
+                              "Team RuntimeTerror developed me",
+                              "I was developed by Bishal,Devanshi,Krish and Amogh",
+                              "4 students from New LJ College developed me"
+                      ]
+              },
+              {
+                      "tag": "name",
+                      "patterns": [
+                              "name",
+                              "your name",
+                              "do you have a name",
+                              "what are you called",
+                              "what is your name",
+                              "what should I call you",
+                              "whats your name?",
+                              "what are you",
+                              "who are you",
+                              "who is this",
+                              "what am i chatting to",
+                              "who am i taking to",
+                              "what are you"
+                      ],
+                      "responses": [
+                              "You can call me Bisque",
+                              "I'm Bisque",
+                              "My creators named me Bisque"
+                      ]
+              },
+    {
+      "tag": "good",
+      "patterns":["Will I do good in studies?",
+      "Am I good in studies?",
+      "Do I have a good scope ahead?"],
+      "responses":[
+        "Yes absolutely!",
+        "Absolutely! There is no doubt in that",
+        "I believe so, yes"
+      ]
+    },
+    {
+      "tag":"bad",
+      "patterns":["I did not score well", 
+      "Will bad marks affect my future?", 
+      "I got bad marks"],
+      "responses":[
+        "That's totally fine, you will do good",
+        "Do not worry, you will do very good in future",
+        "Nothing to worry, A single piece of paper cannot decide your future"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", 
+      "See you later", 
+      "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", 
+      "Thank you", 
+      "That's helpful", 
+      "Thank's a lot!"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+    },
+
+    {
+      "tag": "purpose",
+      "patterns": [
+        "What can you do for me?",
+        "What can you help me with?",
+        "What can you do?"
+      ],
+      "responses": [
+        "I can help you with your career guidance",
+        "I will help you in guiding you with your fututre career selection"
+      ]
+    },
+    {
+      "tag": "happy",
+      "patterns": [
+        "Are you happy that you were created?",
+        "Are you happy with your job?"
+      ],
+      "responses": [
+        "Yes! I love helping people",
+        "Yes! I love helping students with their career guidance"
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Tell me something funny!",
+        "Do you know a joke?"
+      ],
+      "responses": [
+        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+        "What did the buffalo say when his son left for college? Bison."
+      ]
+    },
+    {
+      "tag":"music",
+      "patterns":[
+        "Is music a good career?",
+        "Is pursuing music good?",
+        "Is music a good career option?",
+        "Should I take music as a career if my music skills are good?"
+      ],
+      "responses":[
+        "Yes absolutely!",
+        "Music is an amazing career option",
+        "Music has a big scope"
+      ]
+    },
+    {
+      "tag":"sports",
+      "patterns":[
+        "Is sports a good career option?",
+        "I am good in sports, shall I go for it?",
+        "Does sports have good scope?"
+      ],
+      "responses":[
+        "Sports is an amazing career with huge scope",
+        "Sports is an excellent career choice"
+      ]
+    },
+    {
+      "tag":"arts",
+      "patterns":[
+        "I really like doing theatre",
+        "Is doing theatre as a career good?",
+        "I want to pursue theatre"
+      ],
+      
+        "responses":[
+          "Theatre has a really good scope",
+          "Theatre is an excellent form of art",
+          "Pursuing theatre is very good"
+        ]
+    },
+    {
+      "tag":"tech",
+      "patterns":[
+        "I really like technical domain",
+        "I love technical domain",
+        "Is there a career in technical field"
+      ],
+      "responses":[
+        "Tech domain is an emerging domain, excellent for you!",
+        "Tech domain has the highest scope",
+        "Technical domain is the best"
+      ]
+    },
+    {
+    "tag":"coding",
+    "patterns":[
+      "I love coding!",
+      "I can do coding well",
+      "I am good at coding"
+  
+    ],
+    "responses":[
+      "You can go for software domain",
+      "You can pursue coding further",
+      "Software domain is excellent for you then!"
+    ]
+  },
+  {
+    "tag":"biology",
+    "patterns":[
+      "I like biology!",
+      "My biology is good",
+      "I really like biology"
+    ],
+    "responses":[
+      "You can go further in biology as a career",
+      "You are really skilled",
+      "Medical can be a good field for you"
+    ]
+
+  },
+  {
+    "tag":"maths",
+    "patterns":[
+      "My maths is bad",
+      "I am bad at maths",
+      "My math skills are bad"
+    ],
+    "responses":[
+      "That's totally ok",
+      "Don't need to worry, you will have it sorted out",
+      "No need to worry at all"
+    ]
+  }
+  ]
+}
+
