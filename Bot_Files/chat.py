@@ -217,7 +217,7 @@ def get_response_(sentence):
             q_counter+=1
         else:
             q_counter+=2
-        return q_list[15]
+        return q_list[q_counter-1]
     if(q_counter==16):
         res=q16(sentence)
         a16=res
