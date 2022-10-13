@@ -82,106 +82,115 @@ q_res=[["Don't worry at all, I've still got your back","Sit back and relax, scie
          ["Not everyone likes to work on a team","You are fit to lead!"],
          ["Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone","Looks like you work your best when you work alone",
           "I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects","I am sure you were the leader in school projects"],
-         ["Looks like you might be a fan of Breaking Bad too","We still have much options left for you"],
+         ["We still have much options left for you","Looks like you might be a fan of Breaking Bad too"],
          ["Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too","Chemistry is tough for me too",
           "You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals","You have a way with handling chemicals"],
-         ["You just opened a big pile of options for yourself","Don't worry there are many good non-techincal fields"],
+         ["Don't worry there are many good non-techincal fields","You just opened a big pile of options for yourself"],
          ["Let's see what I have further to offer you","Great choice! You are in for big time"],
          ["Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice","Looks like you need more practice",
           "I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard","I am sure you are good with keyboard"],
          ["You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry","You will get there, don't worry",
           "Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound","Looks like you are sound"],
-         ["You are in for big time","Not everyone likes it"],
-         ["Awesome choice ky friend!"],
+         ["Not everyone likes it","You are in for big time"],
+         ["Awesome choice my friend!"],
          ["Now that is an amazing preference"],
-         ["Cool! Looks like you might have it sorted","Working a 9-5 is good too"],
+         ["Working a 9-5 is good too","Cool! Looks like you might have it sorted"],
          ["Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing",
           "You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person"],
+         ["Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing","Looks like this is not your thing",
+          "You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person","You sound like a kind hearted person"],
+         ["Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths",
+          "You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers"],
          ["Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths","Not everyone is good in maths",
           "You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers","You have a way with numbers"],
          ["Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills","Looks like you still thrive for more visual skills",
           "Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation","Looks like your brain is prepared to act in any situation"]
          ]
 a=[0]*28
-
+v=0
 def get_response_(sentence):
     sentence=sentence.lower()
     global q_counter
     global q_list
     global a
+    global v
     global flag
     global q_res
     if(q_counter==0):
         flag=1
         q_counter+=1
-        return "I will ask you a few questions. Answer me well \n"+q_list[q_counter-1]
+        return "I will ask you a few questions. Answer me well \n\n"+q_list[q_counter-1]
     if(q_counter==1):
         res=q1(sentence)
         a1=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==2):
         res=q2(sentence)
         a2=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==3):
         res=q3(sentence)
         a3=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==4):
         res=q4(sentence)
         a4=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==5):
         res=q5(sentence)
         a5=res
         hsc=0 if int(res)<300 else 1
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][hsc]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][hsc]+'\n\n'+q_list[q_counter-1]
     if(q_counter==6):
         res=q6(sentence)
         a6=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=2
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+            v=1
+        return q_res[q_counter-v-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==7):
         res=q7(sentence)
         a7=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==8):
         res=q8(sentence)
         a8=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=2
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+            v=1
+        return q_res[q_counter-v-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==9):
         res=q9(sentence)
         a9=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==10):
         res=q10(sentence)
         a10=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==11):
         res=q11(sentence)
         a11=res
@@ -190,116 +199,124 @@ def get_response_(sentence):
             q_counter+=1
         else:
             q_counter+=2
-        return q_res[10][res]+'\n'+q_list[q_counter-1]
+        return q_res[10][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==12):
         res=q12(sentence)
         a12=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==13):
         res=q13(sentence)
         a13=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==14):
         res=q14(sentence)
         a14=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==15):
         res=q15(sentence)
         a15=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=2
+            v=1
         return q_list[q_counter-1]
     if(q_counter==16):
         res=q16(sentence)
         a16=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==17):
         res=q17(sentence)
         a17=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=4
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+            v=3
+        return q_res[q_counter-v-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==18):
         res=q18(sentence)
         a18=int(res)
         a[q_counter-1]=a18
         q_counter+=1
-        return q_res[q_counter-2][a18]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][a18]+'\n\n'+q_list[q_counter-1]
     if(q_counter==19):
         res=q19(sentence)
         a19=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==20):
         res=q20(sentence)
         a20=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==21):
         res=q21(sentence)
         a21=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=3
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+            v=2
+        return q_res[q_counter-v-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==22):
         res=q22(sentence)
         a22=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==23):
         res=q23(sentence)
         a23=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==24):
         res=q24(sentence)
         a24=res
         a[q_counter-1]=res
         if res==1:
             q_counter+=1
+            v=0
         else:
             q_counter+=2
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+            v=1
+        return q_res[q_counter-v-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==25):
         res=q25(sentence)
         a25=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==26):
         res=q26(sentence)
         a26=res
         a[q_counter-1]=res
         q_counter+=1
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(q_counter==27):
         res=q27(sentence)
         a27=res
         a[q_counter-1]=res
         q_counter+=1
         flag=2
-        return q_res[q_counter-2][res]+'\n'+q_list[q_counter-1]
+        return q_res[q_counter-2][res]+'\n\n'+q_list[q_counter-1]
     if(flag==2):
         res=q28(sentence)
         a28=res
