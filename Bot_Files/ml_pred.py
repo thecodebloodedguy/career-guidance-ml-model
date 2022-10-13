@@ -21,8 +21,8 @@ df['stage_in']=df['stage_in'].replace(['yes','no'],[1,0])
 X = df.drop(['career'], axis=1)
 Y=df['career']
 from sklearn.svm import SVC 
-from sklearn.ensemble import BaggingClassifier
-clf = BaggingClassifier(base_estimator=SVC(),n_estimators=10, random_state=0).fit(X,Y)
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier().fit(X,Y)
 
 filename = 'finalized_model.sav'
 pickle.dump(clf, open(filename, 'wb'))
