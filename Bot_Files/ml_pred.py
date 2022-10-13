@@ -20,12 +20,13 @@ df['chem_in']=df['chem_in'].replace(['yes','no'],[1,0])
 df['stage_in']=df['stage_in'].replace(['yes','no'],[1,0])
 X = df.drop(['career'], axis=1)
 Y=df['career']
-from sklearn.svm import SVC 
+# from sklearn.svm import SVC 
 from sklearn.ensemble import RandomForestClassifier
-clf = RandomForestClassifier().fit(X,Y)
+clf = RandomForestClassifier()
+clf.fit(X, Y)
 
 filename = 'finalized_model.sav'
 pickle.dump(clf, open(filename, 'wb'))
-
+print("Done Trainin")
 #WARNING : The file is incomplete 
 #proper model will be trained only after purified data from
