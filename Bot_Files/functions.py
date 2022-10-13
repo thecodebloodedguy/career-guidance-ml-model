@@ -12,7 +12,6 @@ def q1(n):
           return 4
       else:
         return 0
-      return -1
 
 def q2(n):
  
@@ -23,7 +22,6 @@ def q2(n):
           return 2
       else:
         return 3
-      return -1
 
 def q3(n):
 
@@ -45,7 +43,7 @@ def q6(n):
           return 1
       elif n=="no":
           return 0
-      return -1
+      return 0
 
 def q7(n):
   n=int(n)
@@ -53,7 +51,6 @@ def q7(n):
     return int(n)
   else:
     return 0
-  return -1
 
 
 def q8(n):
@@ -63,7 +60,7 @@ def q8(n):
           return 1
       elif n=="no":
           return 0
-      return -1
+      return 0
 
 def q9(n):
       if n=="music":
@@ -78,7 +75,7 @@ def q9(n):
           return 5    
       else:
         return 0
-      return -1
+
 
 def q10(n):
   return int(n)
@@ -101,7 +98,7 @@ def q13(n):
           return 1
     elif n=="no":
         return 0
-    return -1
+    return 0
 
 
 def q14(n):
@@ -118,7 +115,7 @@ def q15(n):
           return 1
       elif n=="no":
           return 0
-      return -1
+      return 0
 
 def q16(n):
   return int(n)
@@ -133,14 +130,14 @@ def q17(n):
           return 1
       elif n=="no":
           return 0
-      return -1
+      return 0
 
 def q18(n):
   if n=="software":
     return 1
   elif n=="hardware":
     return 2
-  return -1
+  return 0
 
 
 
@@ -166,9 +163,7 @@ def q22(n):
           return 1
       elif n=="medical":
           return 2
-      else:    
-         return 0
-      return -1
+      return 0
 
 def q23(n):
       if n=="veterinary":
@@ -183,7 +178,6 @@ def q23(n):
           return 5    
       else:
         return 0
-      return -1
 
 def q24(n):
  
@@ -192,7 +186,7 @@ def q24(n):
           return 1
       elif n=="no":
           return 0
-      return -1
+      return 0
 def q25(n):
       if n=="industrial":
           return 1
@@ -204,7 +198,6 @@ def q25(n):
           return 4 
       else:
         return 0
-      return -1
      
 
 def q26(n):
